@@ -1,0 +1,69 @@
+/* =====================================================================
+   about.css - load AFTER style.css and projects.css
+   (projects.css already styles the header title and the Projects dropdown)
+   ===================================================================== */
+:root { --about-bg: #5D1819; }          /* page colour of the About page */
+
+.about-page .site { background: var(--about-bg); }
+.about { background: var(--about-bg); }
+
+/* vertical tile strip on the left */
+.about::before {
+  content: ""; position: absolute; z-index: 0;
+  left: 3.4cqw; top: 9.4cqw; bottom: 0; width: 4.7cqw;
+  background: var(--border-v) center top / 100% auto repeat-y;
+}
+
+/* ---------- header tweaks for this page (title is a bit smaller in the design) ---------- */
+.about-page .page-title { top: 2.2cqw; font-size: 2.6cqw; letter-spacing: .08em; }
+.about-page .pt-hi { font-size: 1.4cqw; }
+@media (min-width: 801px) { .about-page .logo { left: 3.2cqw; top: 1cqw; height: 6cqw; } }
+
+/* ---------- text ---------- */
+.about-text {
+  position: absolute; z-index: 1; left: 15.6cqw; top: 16.3cqw; width: 28.2cqw;
+  text-align: center; color: var(--paper);
+  font: 300 1.1cqw/2.08 "Roboto", sans-serif;
+}
+.about-text p { margin: 0; }
+
+/* ---------- picture area: everything inside is positioned in % of this box ---------- */
+.art {
+  position: absolute; z-index: 1; left: 47.5cqw; top: 20.7cqw; width: 52.5cqw;
+  aspect-ratio: 1008 / 682; container-type: inline-size; pointer-events: none;
+}
+.art > * { position: absolute; display: block; }
+
+.art-wm {                                   /* Hindi word behind everything */
+  left: 5%; top: 26%; z-index: 1; white-space: nowrap; letter-spacing: -.01em;
+  font-family: "maku", "Noto Sans Devanagari", "Baloo 2", sans-serif;
+  font-weight: 400; font-size: 31cqw; line-height: 1.1;
+  color: var(--olive); opacity: .6;
+}
+
+.ring { aspect-ratio: 1; z-index: 2; }       /* the two concentric wavy circles */
+.ring-1 { left: 18.45%; top: 0;   width: 67%;   animation: spin 46s linear infinite; }
+.ring-2 { left: 24.2%;  top: 8.5%; width: 55.4%; opacity: .7; animation: spin 32s linear infinite reverse; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.portrait {                                  /* cut-out photo with the faded blue glow */
+  left: -5.5%; top: 12.8%; width: 100.8%; z-index: 3;   /* bottom is cut off by the page edge, like the design */
+  filter: drop-shadow(.7cqw 0 0 #90AB0B);;
+}
+
+@media (prefers-reduced-motion: reduce) { .ring { animation: none; } }
+
+/* ---------- quote ---------- */
+.quote {
+  position: absolute; z-index: 4; right: 2.8cqw; top: 52cqw; margin: 0; text-align: right;
+  font: 400 .62cqw/1.7 var(--serif); color: var(--paper);
+}
+
+/* ---------- phone ---------- */
+@media (max-width: 800px) {
+  .about { aspect-ratio: auto; min-height: 100svh; padding: 34cqw 6cqw 12cqw 17cqw; }
+  .about::before { left: 3cqw; top: 30cqw; width: 9cqw; }
+  .about-text { position: static; width: auto; font-size: 4.2cqw; line-height: 1.8; }
+  .art { position: relative; left: auto; top: auto; width: 100%; margin: 10cqw 0 0 -11cqw; }
+  .quote { position: static; margin-top: 8cqw; font-size: 3cqw; }
+}

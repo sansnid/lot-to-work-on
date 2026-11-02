@@ -1,0 +1,165 @@
+/* =====================================================================
+   projects.css  -  load AFTER style.css on every page
+   1) nav dropdown (Projects > Films > Ad-PSA ...)   2) projects page
+   ===================================================================== */
+:root {
+  --teal: #6FCFD0;
+  --rose: #a88177;                                   /* page colour behind the cards */
+  --frame: url("images/frame.jpg");                  /* cream flower frame */
+  --frame-hover: url("images/PinGrab_1793506333618.gif");      /* the animated teal frame */
+  --border-v: url("images/border-v.png");            /* vertical tile strip on the left */
+  --serif: "Gelasio", Georgia, serif;                /* caption font (swap for yours) */
+        /* teal handwritten words (swap for yours) */
+}
+
+/* ---------- 1. NAV DROPDOWN ---------- */
+.has-menu { position: relative; display: flex; flex-direction: column; align-items: flex-end; 
+  --ms: 1.5;     /* dropdown scale: 1 = current size, .75 = 25% smaller */}
+
+.menu, .sub-menu { list-style: none; margin: 0; padding: 0; }
+
+.menu {
+  position: absolute; top: 100%; right: 0; z-index: 30;
+  min-width: calc(12cqw * var(--ms));
+  padding: calc(.7cqw * var(--ms)) calc(1.3cqw * var(--ms)) calc(.8cqw * var(--ms));
+  border-radius: calc(.9cqw * var(--ms));
+  background: rgba(46, 18, 18, .72); backdrop-filter: blur(.6cqw);
+  opacity: 0; visibility: hidden; transform: translateY(-.4cqw);
+  transition: opacity .25s, transform .25s, visibility .25s;
+}
+.nav .menu a {
+  display: block; text-align: left; white-space: nowrap;
+  font: 400 calc(.95cqw * var(--ms))/2.1 "Roboto", sans-serif; letter-spacing: .03em;
+  transform: none; opacity: .92;
+}
+.sub-menu { display: none; padding-left: calc(1.5cqw * var(--ms)); }
+.nav .sub-menu a { font-size: calc(.8cqw * var(--ms)); line-height: 2; }
+
+
+.has-menu:hover > .menu,
+.has-menu:focus-within > .menu,
+.has-menu.open > .menu { opacity: 1; visibility: visible; transform: none; }
+
+
+.nav .menu a:hover, .nav .menu a:focus-visible { transform: none; opacity: 1; color: var(--teal); }
+.menu > li > a::before { content: "•"; margin-right: .55cqw; font-size: .8em; opacity: .8; }
+
+
+.has-sub:hover > .sub-menu,
+.has-sub:focus-within > .sub-menu,
+.has-sub.open > .sub-menu { display: block; }
+
+.has-sub > a::after { content: "▾"; margin-left: .5cqw; font-size: .75em; opacity: .7; }
+
+/* ---------- 2. HEADER TITLE (changes while you scroll) ---------- */
+.projects-page .page-title {
+  left: 10.6cqw; top: 2cqw; width: max-content;
+  font: 300 2.6cqw/1 "Roboto", sans-serif; letter-spacing: .1em;
+}
+.projects-page .pt-hi {
+  display: block; text-align: right; margin-top: .5cqw; letter-spacing: 0; margin-right: 0.8cqw;
+  font: 400 1.7cqw/1.2 "maku", "Noto Sans Devanagari", sans-serif; color: var(--teal);
+}
+.header.titled .page-title.swap { opacity: 0; transform: translateY(-.6cqw); }
+
+/* ---------- 3. GALLERY SECTIONS ---------- */
+.gallery { background: var(--rose); }   /* flat colour, no wall image */
+
+.gallery::before {                         /* vertical tile strip */
+  content: ""; position: absolute; z-index: 0;
+  left: 3.4cqw; top: 9.4cqw; bottom: 0; width: 4.7cqw;
+  background: var(--border-v) center top / 100% auto repeat-y;
+}
+.gallery .wm { left: 24.6cqw; top: 21.4cqw; z-index: 2; font-size: 22cqw; color: #500C0D;}   /* big watermark word */
+
+.cards {
+  position: absolute; left: 13.8cqw; top: 13.1cqw; width: 80cqw;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.34cqw;
+}
+.card { margin: 0; }
+a.card { display: block; color: inherit; text-decoration: none; cursor: pointer; }
+a.card:focus-visible { outline: .15cqw solid var(--teal); outline-offset: .3cqw; }
+.card-title {
+  margin: 0 0 1.05cqw; text-align: center; font-weight: 400;
+  font: 400 1.05cqw/1 "major-mono-display", sans-serif;
+  letter-spacing: .1em; color: var(--paper);
+}
+
+.frame {
+  position: relative; aspect-ratio: 890 / 1110;
+  background: var(--frame) center / 100% 100% no-repeat;
+  border-radius: .6cqw; overflow: hidden;            /* small rounded corners on the frame */
+}
+.frame img {                               /* photo sits inside the frame */
+  position: absolute; left: 21%; top: 8.8%; width: 58%; height: 82.6%;
+  object-fit: cover; display: block; z-index: 3;
+}
+/* hover: swap in the animated GIF frame */
+.card:hover .frame { background-image: var(--frame-hover); }
+/* hover: the two cream frames that appear on top of the water GIF */
+.frame { transition: box-shadow .3s; }
+.frame::after {                                   /* 2) cream mat around the photo */
+  content: ""; position: absolute; left: 15.5%; top: 5.3%; width: 69%; height: 89.6%;
+  border-radius: .8cqw; background: rgba(238, 236, 226, .9);
+  opacity: 0; transition: opacity .3s; pointer-events: none;
+}
+.card:hover .frame,
+.card:focus-visible .frame { box-shadow: inset 0 0 0 .3cqw #efe9dd; }   /* 1) thin cream line around the whole card */
+.card:hover .frame::after,
+.card:focus-visible .frame::after { opacity: 1; }
+
+.caption { 
+  position: absolute; z-index: 1; left: 13.8cqw; top: 47.4cqw; width: 66cqw; margin: 0;
+  font: 400 1.5cqw/2.6 var(--serif); letter-spacing: .05em; color: var(--teal); opacity: .85;
+}
+.caption .script { font-family: "nouvelle-vague", sans-serif;
+font-weight: 400;
+font-style: normal; letter-spacing: .02em; color: var(--teal); opacity: 1; }
+.caption .script b { font-weight: 700; font-size: 1.25em; }
+
+/* ---------- L-shaped corner: vertical strip turns into the horizontal strip ---------- */
+.projects-page .site { background: var(--rose); }
+.gallery + .strip { margin-left: calc(var(--w) * .034); }   /* starts where the vertical strip starts (3.4cqw) */
+
+/* ---------- header positions from the projects slide (laptop only) ---------- */
+@media (min-width: 801px) {
+  .projects-page .logo   { left: 3.2cqw; top: 1cqw; height: 6cqw;}
+  .projects-page .search { left: 62.3cqw; }
+  .projects-page .nav    { right: 2.3cqw; }
+}
+
+/* ---------- hover sound toggle ---------- */
+.sound-toggle {
+  position: absolute; left: 58.4cqw; top: 2.3cqw; z-index: 2;
+  width: 2.6cqw; height: 2.6cqw; border: 0; border-radius: 50%;
+  background: var(--paper); color: var(--ink); opacity: .85; cursor: pointer;
+  display: grid; place-items: center;
+}
+.sound-toggle:hover, .sound-toggle.on { opacity: 1; }
+.sound-toggle svg { width: 1.4cqw; height: 1.4cqw; }
+.sound-toggle .waves { display: none; }
+.sound-toggle.on .waves { display: inline; }
+.sound-toggle.on .slash { display: none; }
+.card:focus-visible .frame { background-image: var(--frame-hover); }   /* keyboard focus = same as hover */
+
+/* ---------- 4. PHONE ---------- */
+@media (max-width: 800px) {
+  .sound-toggle { display: none; }   /* hover sound is for laptops */
+  .projects-page .page-title { left: 17cqw; top: 5cqw; font-size: 8cqw; }
+  .projects-page .pt-hi { font-size: 3.6cqw; }
+
+  .menu { min-width: 40cqw; padding: 2cqw 4cqw 2.5cqw; border-radius: 3cqw; }
+  .nav .menu a { font-size: 3.8cqw; }
+  .nav .sub-menu a { font-size: 3.3cqw; }
+  .sub-menu { padding-left: 3cqw; }
+
+  .gallery { padding: 34cqw 6cqw 14cqw 17cqw; }
+  .gallery::before { left: 3cqw; top: 30cqw; width: 9cqw; }
+  .gallery + .strip { margin-left: calc(var(--w) * .03); }
+  .gallery .wm { left: 10cqw; top: 40cqw; font-size: 44cqw; }
+  .cards { position: relative; left: auto; top: auto; width: auto; grid-template-columns: 1fr; gap: 9cqw; }
+  .card-title { font-size: 4.4cqw; margin-bottom: 2.5cqw; }
+  .frame { border-radius: 1.8cqw; }
+  .caption { position: static; width: auto; margin-top: 10cqw; font-size: 3.8cqw; }
+  .caption .script { font-size: 6cqw; }
+}

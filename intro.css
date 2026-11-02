@@ -1,0 +1,28 @@
+/* intro.css - black cover + stage for the fish intro (see intro.js) */
+
+/* black cover from the very first paint, so the homepage never flashes */
+html.intro-pending::before { content: ""; position: fixed; inset: 0; z-index: 999; background: #000; }
+html.intro-on { overflow: hidden; }
+
+.intro { position: fixed; inset: 0; z-index: 1000; }
+.intro-bg { position: absolute; inset: 0; background: #000; }
+
+/* 16:9 stage, same size and position as your pages (1280 x 720 animation units = 100cqw wide) */
+.intro-stage {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: var(--w, min(100vw, calc(100vh * 16 / 9))); aspect-ratio: 16 / 9;
+  container-type: inline-size; overflow: hidden;
+}
+.intro-stage img { position: absolute; display: block; opacity: 0; pointer-events: none; user-select: none; }
+.intro-fish { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+.intro-fish img { left: 0; top: 0; }       /* sprites are centred on the fish position by intro.js */
+
+/* music: little speaker button + "click for sound" hint */
+.intro-mute { position: absolute; right: 16px; bottom: 16px; width: 40px; height: 40px; border: 0; border-radius: 50%;
+  background: rgba(252, 248, 247, .9); color: #1c1a18; display: grid; place-items: center; cursor: pointer; }
+.intro-mute svg { width: 20px; height: 20px; }
+.intro-mute .off-line { display: none; }
+.intro-mute.off .off-line { display: block; }
+.intro-hint { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); pointer-events: none;
+  font: 400 14px/1 system-ui, sans-serif; letter-spacing: .04em; color: #fcf8f7; opacity: .75; transition: opacity .4s; }
+.intro-hint.hide { opacity: 0; }
