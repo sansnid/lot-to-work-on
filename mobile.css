@@ -1,0 +1,182 @@
+/* =====================================================================
+   mobile.css - phone layout (screens up to 800px wide). Load LAST on every page.
+   1cqw = 1% of screen width (402px phone: 4cqw = 16px). Laptop is untouched.
+   ===================================================================== */
+
+.menu-btn { display: none; }
+
+@media (max-width: 800px) {
+  :root { --w: 100vw; --band: #47382c; --proj-bg: #9fb921; }
+  html { scroll-snap-type: none; }
+  html, body { background: var(--band); }
+  body { overflow-x: hidden; }
+
+  /* ---------- header ---------- */
+  .header { position: absolute; top: 0; left: 0; transform: none; width: 100%; height: 30cqw; }
+  .proj-page .header.is-hidden { opacity: 1; transform: none; }
+
+  .logo, .projects-page .logo, .about-page .logo { left: 4.5cqw; top: 0; height: 14.4cqw; }
+
+  .search, .projects-page .search {
+    left: 43.8cqw; top: 5cqw; width: 52.5cqw; height: 4.2cqw; border-radius: 3.2cqw;
+    padding: 0 3cqw 0 3.2cqw; gap: 3cqw;
+  }
+    /* search results list: change --sr to scale everything (1 = old size, .75 = default here, .6 = tiny) */
+  .search-results {
+    --sr: .75;
+    left: auto; right: 0; width: 80cqw; top: calc(100% + 1.5cqw);
+    max-height: calc(90cqw * var(--sr));
+    padding: calc(2cqw * var(--sr)); border-radius: calc(4cqw * var(--sr));
+  }
+  .sr-head  { font-size: calc(3cqw * var(--sr)); }
+  .sr-item  { padding: calc(2.5cqw * var(--sr)) calc(3cqw * var(--sr)); border-radius: calc(3cqw * var(--sr)); }
+  .sr-title { font-size: calc(4cqw * var(--sr)); }
+  .sr-cat   { font-size: calc(3cqw * var(--sr)); }
+  .sr-desc  { font-size: calc(3.3cqw * var(--sr)); }
+  .sr-empty { font-size: calc(3.8cqw * var(--sr)); }
+  .search input { font-size: 2cqw; }
+  .search svg { width: 3cqw; height: 3cqw; }
+  .menu-btn {
+    display: grid; place-items: center; flex: none; width: 5cqw; height: 5cqw;
+    border: 0; padding: 0; background: none; color: var(--ink); cursor: pointer;
+  }
+  .menu-btn svg { width: 5cqw; height: 5cqw; }
+
+  /* nav: three simple links (dropdown is hidden on phones) */
+  .nav, .projects-page .nav { right: 5cqw; top: 11.6cqw; flex-direction: column; align-items: flex-end; gap: 0; }
+  .nav a { font: 300 2.1cqw/3.7cqw "Roboto", sans-serif; letter-spacing: .05em; opacity: 1; }
+  .nav a:hover, .nav a:focus-visible { transform: none; }
+  .header.nav-closed .nav { display: none; }
+  .nav .menu { display: block; min-width: 30cqw; padding: 1.5cqw 3cqw 2cqw; border-radius: 2.5cqw; }
+  .nav .menu a { font-size: 3cqw; line-height: 2; }
+  .nav .sub-menu a { font-size: 2.6cqw; }
+  .has-sub > a::after { display: none; }
+
+  /* page title (Projects / Films / Photos ...) + Hindi word under it */
+  .page-title, .projects-page .page-title, .about-page .page-title {
+    left: 5cqw; top: 17cqw; font-size: 6.5cqw; letter-spacing: .08em;
+  }
+  .projects-page .pt-hi, .about-page .pt-hi {
+    font-size: 2.6cqw; margin: 1cqw 0 0; text-align: left; letter-spacing: 0;
+  }
+
+  /* full-width tile border everywhere */
+  .strip, .gallery + .strip { height: 10cqw; margin-left: 0; background-color: transparent; }
+
+  /* ---------- HOME: hero ---------- */
+  .site { background: var(--band); }
+  .hero { min-height: 10; height: 120.3cqw; margin: 25cqw 0 20cqw; }
+  .hero .bg { background-position: 4% center; }
+  .hero .title { left: 4cqw; top: 54cqw; transform: none; padding: 0; font-size: 31.5cqw; line-height: 1.1; }
+
+  /* ---------- HOME: projects (2 x 2 boxes) ---------- */
+  .work { aspect-ratio: auto; height: auto; padding: 57.7cqw 0 12.7cqw; }
+  .work .wm { left: 30.8cqw; top: 31.6cqw; font-size: 15cqw; color: var(--olive); opacity: .22; }
+  .cols {
+    position: relative; left: auto; top: auto; width: 84cqw; height: auto; margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr); gap: 5cqw;
+  }
+  .col { height: 63cqw; }
+  .col span {
+    position: absolute; inset: 0; margin: 0; display: grid; place-items: center;
+    font-size: 3.5cqw; text-align: center;
+  }
+
+  /* ---------- CONTACT (home + project pages) ---------- */
+  .contact { height: 52cqw; }
+  .contact h2 { left: 6.5cqw; top: 8cqw; font-size: 4.5cqw; }
+  .contact .item { top: auto; }
+  .contact .email { left: 9cqw; top: 18cqw; }
+  .contact .insta { left: 9cqw; top: 30cqw; }
+  .contact h3 { font-size: 3.4cqw; margin: 0 0 1.2cqw; }
+  .contact a { font-size: 2.4cqw; }
+
+  /* ---------- PROJECTS PAGE: caption, then framed cards ---------- */
+ .gallery { aspect-ratio: auto; height: auto; display: flex; flex-direction: column; padding: 17cqw 0 8cqw; } 
+    /* section title + Hindi word printed inside each section (header title is hidden on this page) */
+    /* section title + Hindi word: stacked together, one right under the other */
+  .gallery::before, .gallery::after {
+    position: static; align-self: flex-start; margin-left: 5cqw; z-index: 2;
+    background: none; width: auto; height: auto; left: auto; top: auto; bottom: auto;
+  }
+  .gallery::before {
+    content: attr(data-title); order: -3;
+    font: 300 6.5cqw/1 "Roboto", sans-serif; letter-spacing: .08em; color: var(--paper);
+  }
+  .gallery::after {
+    content: attr(data-hi); order: -2; margin-top: 1cqw;              /* <- gap between title and Hindi */
+    font: 400 2.6cqw/1.2 "maku", "Noto Sans Devanagari", sans-serif; color: var(--teal);
+  }
+    /* logo above the Films / Dance / Minis titles (Photos already has the real header logo) */
+  .gallery:not(#photos) {
+    background-image: url("images/logo.png");
+    background-repeat: no-repeat;
+    background-position: 4.5cqw 0;
+    background-size: auto 14.4cqw;      /* same size and place as the header logo */
+  }
+  .projects-page:not(.proj-page):not(.about-page) .header .page-title { display: none; }                         /* no vertical tile strip */
+  .gallery .wm { left: 28cqw; top: 28cqw; font-size: 15cqw; }
+
+  .caption {
+        font-size: 2cqw; order: -1; position: static; width: 84cqw; margin: 16.4cqw auto 8.3cqw; text-align: center;
+  }
+  .caption .script { font-size: 3.2cqw; }
+
+  .cards { position: relative; left: auto; top: -3cqw; width: 72cqw; margin: 0 auto; grid-template-columns: 1fr; gap: 9.5cqw; }
+  a.card { display: flex; flex-direction: column; }
+  .card-title {
+    order: 2; margin: 4cqw 0 0; font-size: 3cqw; letter-spacing: .12em;
+    text-transform: uppercase; color: rgba(252, 248, 247, .6);
+  }
+  .frame { order: 1; aspect-ratio: 1 / 1; border-radius: 3cqw; }
+  .frame img { left: 15%; top: 15%; width: 70%; height: 70%; border-radius: 2cqw; }
+  .frame::after { display: none; }                             /* no hover mat on touch */
+  .card:hover .frame, .card:focus-visible .frame { background-image: var(--frame); box-shadow: none; }
+
+  /* ---------- PROJECT PAGES (Life of bhabhi, Pambaram ...) ---------- */
+  .proj { padding-top: 48.3cqw; }
+  .proj::before { display: none; }
+  .proj-wm { left: 28cqw; top: 27cqw; font-size: 15cqw; }
+
+  .media, .proj-embed, .proj-photos { margin-left: 0; width: 100%; }
+  .proj-title { font-size: 8.7cqw; line-height: 1.4; left: 2cqw; top: 0; max-width: 60cqw; }
+
+  .proj-text { margin: 2.4cqw 2cqw 0; width: auto; font-size: 2.2cqw; text-align: justify; }
+  .proj-text p { margin-bottom: 6cqw; }
+  .proj-text p:last-child { margin-bottom: 0; }
+
+  .proj-embed { margin-top: 6cqw; }
+  .proj-photos { margin-top: 3cqw; grid-template-columns: 1fr 1fr; gap: 0; }
+
+  .proj-quote { font-size: 1.9cqw; margin: 6.2cqw 4cqw 0; }
+  .proj-quote span { margin-top: 5.5cqw; }
+  .proj-strip { margin: 6.5cqw 0 0; height: 11cqw; }
+
+  .search-results { left: auto; right: 0; width: 92cqw; }
+
+    /* ---------- ABOUT PAGE ---------- */
+  :root { --about-bg: #5D1819; }                 /* dusty rose from your screenshot, tweak if needed */
+
+  .about { aspect-ratio: auto; height: auto; min-height: 0; padding: 46.7cqw 0 0; }
+  .about::before { display: none; }              /* no vertical tile strip */
+
+  .about-text { position: static; width: 84cqw; margin: 0 auto; font-size: 2.5cqw; line-height: 1.95; }
+  .about-text p { margin: 0 0 4.5cqw; }
+  .about-text p:first-child { max-width: 58cqw; margin-left: auto; margin-right: auto; }
+  .about-text p:nth-child(3) { margin-bottom: 0; }   /* last two paragraphs run together, like the design */
+
+  /* picture: big ring behind, Hindi word, portrait cut off by the border */
+  .art { position: relative; left: auto; top: auto; width: 100%; height: 83cqw; margin: 9cqw 0 0; aspect-ratio: auto; overflow: hidden; }
+  .ring-1 { left: -6%;   top: -2%;   width: 114%; }
+  .ring-2 { left: 3.85%; top: 9%; width: 94%; }
+  .art-wm { left: 5%; top: 29%; }
+  .portrait { left: -5.5%; top: 23.4%; width: 100.8%; }
+
+  .quote { display: none; }                      /* not in your phone design; delete this line to show it */
+
+  /* ---------- intro animation ---------- */
+  .intro-stage { top: 54vw; transform: translateX(calc(-55% + 11.6vw)); }
+}
+@media (max-width: 800px) {
+  .nav, .projects-page .nav { top: 4cqw; right: 4cqw}
+}

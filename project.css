@@ -1,0 +1,100 @@
+/* =====================================================================
+   project.css - one project's page (load AFTER style.css, projects.css, search.css)
+   Everything is sized in cqw (1% of the page width), like your other pages.
+   ===================================================================== */
+:root { --proj-bg: #7b8934; }                      /* green page colour (from your latest Figma) */
+
+.proj-page .site { background: var(--proj-bg); }
+
+.proj {
+  position: relative; width: 100%; padding-top: 9.8cqw; overflow: hidden;
+  container-type: inline-size; background: var(--proj-bg);
+}
+
+/* vertical tile strip down the whole left side */
+.proj::before {
+  content: ""; position: absolute; z-index: 0;
+  left: 3.4cqw; top: 9.4cqw; bottom: 0; width: 4.7cqw;
+  background: var(--border-v) center top / 100% auto repeat-y;
+}
+
+/* ---------- the big block (GIF) ---------- */
+.media {
+  position: relative; z-index: 1; margin-left: 11.3cqw; width: 77.5cqw; aspect-ratio: 16 / 9;
+  background: #fff var(--gif, none) center / cover no-repeat;   /* white until you add a GIF */
+}
+.proj-title {
+  position: absolute; left: 1.2cqw; top: .7cqw; margin: 0; max-width: 48cqw;
+  font: 400 6.4cqw/1.2 "major-mono-display", sans-serif; letter-spacing: .14em; color: #fffbfb;
+}
+
+/* ---------- Hindi word (over everything, see-through) ---------- */
+.proj-wm {
+  position: absolute; z-index: 3; left: 55cqw; top: 41.8cqw; pointer-events: none; white-space: nowrap;
+  font: 400 17cqw/1.1 "maku", "Noto Sans Devanagari", "Baloo 2", sans-serif; letter-spacing: -.01em;
+  color: #576220; opacity: .3;
+}
+
+/* ---------- text ---------- */
+.proj-text {
+  position: relative; z-index: 1; margin: 3.4cqw 0 0 11.3cqw; width: 77.5cqw;
+  font: 400 1.1cqw/1.45 var(--serif); letter-spacing: .05em; text-align: justify; color: var(--paper);
+}
+.proj-text p { margin: 0 0 2.6cqw; }
+.proj-text p:last-child { margin-bottom: 0; }
+.proj-text a { color: var(--teal); text-decoration: none; }
+.proj-text a:hover { text-decoration: underline; }
+
+/* ---------- optional video slot ---------- */
+.proj-embed { position: relative; z-index: 1; margin: 3cqw 0 0 11.3cqw; width: 77.5cqw; aspect-ratio: 16 / 9; background: #fff; }   /* white until you add your 16:9 image */
+.proj-embed img, .proj-embed iframe, .proj-embed video { width: 100%; height: 100%; border: 0; display: block; object-fit: cover; }   /* 16:9 image, video or embed */
+
+/* ---------- stills ---------- */
+.proj-photos {
+  position: relative; z-index: 1; margin: 2.8cqw 0 0 11.3cqw; width: 77.5cqw;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2.4cqw;
+}
+.proj-photos img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+
+/* ---------- quote ---------- */
+.proj-quote {
+  position: relative; z-index: 1; margin: 3.4cqw 0 0; text-align: center;
+  font: 400 1cqw/1.2 var(--serif); letter-spacing: .14em; color: var(--teal);
+}
+.proj-quote span { display: block; margin-top: 1.9cqw; }
+
+/* ---------- blue border: starts at the vertical strip and runs to the RIGHT EDGE ---------- */
+.proj-strip {
+  position: relative; z-index: 1; margin: 3cqw 0 0 7.9cqw; height: 4.8cqw;
+  background: var(--border) repeat-x left center / auto 100%;
+}
+
+/* ---------- contact (laptop positions from your design) ---------- */
+.proj-page .contact { background: transparent; scroll-snap-align: none; }
+@media (min-width: 801px) {
+  .proj-page .contact { height: 17cqw; }
+  .proj-page .contact h2 { left: 13.7cqw; top: 5.2cqw; }
+  .proj-page .contact .email { left: 35cqw; top: 5.2cqw; }
+  .proj-page .contact .insta { left: 63.7cqw; top: 5.2cqw; }
+  .proj-page .contact a.u { text-decoration: none; }
+}
+
+/* ---------- phone ---------- */
+@media (max-width: 800px) {
+  .proj { padding-top: 32cqw; }
+  .proj::before { left: 3cqw; top: 30cqw; width: 9cqw; }
+  .media, .proj-text, .proj-embed, .proj-photos { margin-left: 16cqw; width: 80cqw; }
+  .proj-title { font-size: 6cqw; left: 2.5cqw; top: 1.5cqw; max-width: 60cqw; }
+  .proj-wm { left: 44cqw; top: 70cqw; font-size: 20cqw; }
+  .proj-text { margin-top: 7cqw; font-size: 2.2cqw; text-align: left; }
+  .proj-text p { margin-bottom: 5cqw; }
+  .proj-photos { grid-template-columns: 1fr; gap: 4cqw; }
+  .proj-quote { font-size: 1.3cqw; margin: 8cqw 4cqw 0 16cqw; }
+  .proj-strip { margin-left: 12cqw; height: 9cqw; margin-top: 7cqw; }
+}
+
+/* ---------- header hides while you scroll down, comes back when you scroll up ---------- */
+.proj-page .header { transition: opacity .4s ease, transform .4s ease; }
+.proj-page .header.is-hidden { opacity: 0; transform: translate(-50%, -120%); }
+.proj-page .header.is-hidden > * { pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .proj-page .header { transition: none; } }

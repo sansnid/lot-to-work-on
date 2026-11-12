@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About me · संस्कृति</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="projects.css">   <!-- shared: dropdown menu + header title styles -->
+  <link rel="stylesheet" href="about.css">
+ 
+  <link rel="stylesheet" href="https://use.typekit.net/vcm6ubp.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Gelasio&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="mobile.css">
+</head>
+<body class="projects-page about-page">
+
+  <!-- HEADER: same as every page. "titled" keeps the page title visible. -->
+  <header class="header titled">
+    <a class="logo" href="index.html" aria-label="Home"><img src="images/logo.png" alt=""></a>
+    <div class="page-title"><span class="pt-en">About me</span><span class="pt-hi" lang="hi">मैं कौन?</span></div>
+
+    
+
+    <!-- this page's own link (About Me) is left out, like in your design -->
+    <nav class="nav">
+      <div class="has-menu">
+        <a href="projects.html" aria-haspopup="true">Projects</a>
+        <ul class="menu">
+          <li class="has-sub">
+            <a href="projects.html#films">Films</a>
+            <ul class="sub-menu">
+              <li><a href="ad-psa.html">Ad-PSA</a></li>
+              <li><a href="radiodrama.html">Radiodrama</a></li>
+              <li><a href="life-of-bhabhi.html">Character sketch</a></li>
+            </ul>
+          </li>
+          <li><a href="projects.html#photos">Photos</a></li>
+          <li><a href="projects.html#dance">Dance</a></li>
+          <li><a href="projects.html#minis">Minis</a></li>
+        </ul>
+      </div>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="site">
+    <section class="page about" id="about">
+
+      <div class="about-text">
+        <p>I am a design student, with most experience in Film and Video Communication, trying to further explore more in Spatial design.</p>
+        <p>I am pursuing my Bachelors at National Institute of Design, Ahmedabad, India and currently on an exchange programme at Hochschule Luzern - Design Film Kunst, Luzern, Switzerland.</p>
+        <p>My area of interest is noticing something new everyday! From books to music to languages to people, anything and everything around our lives. I like to experiment with media and believe every medium has the capability to leave a loud impact in its own way.</p>
+        <p>With my work, I try to emphasis on day to day elements, both tangible and intangible and various narratives around it.</p>
+      </div>
+
+      <!-- portrait + two revolving rings + Hindi word behind -->
+      <div class="art" aria-hidden="false">
+        <div class="art-wm" lang="hi" aria-hidden="true">संस्कृति</div>
+        <img class="ring ring-1" src="images/wavy-circle.png" alt="">
+        <img class="ring ring-2" src="images/wavy-circle.png" alt="">
+        <img class="portrait" src="images/about-portrait.png" alt="Sanskriti reading a book, wearing a crochet headband">
+      </div>
+
+      <p class="quote">“Things we lose have a way of coming back to us in the end, if not always in the way we expect”<br>-Luna Lovegood</p>
+    </section>
+  </main>
+
+  <script src="nav.js"></script>
+
+  <script src="project.js"></script>
+  <script src="mobile.js"></script>
+  <script src="contact-popup.js"></script>
+</body>
+</html>
